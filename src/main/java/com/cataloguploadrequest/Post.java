@@ -45,9 +45,7 @@ public class Post {
 
                 FormBodyPartBuilder part2 = FormBodyPartBuilder.create()
                         .setName("CIF")
-                        // .setField("Content-ID", "<attachment>") // funcionó sin esto
                         .setField("Content-Type", "text/plain")
-                        // .setField("Content-Disposition", "attachment") // esto aparentemente me estaba generando la respuesta null
                         .setBody(new FileBody(new File("files/catalog_1.cif")));
 
                 builder.addPart(part1.build());
@@ -56,11 +54,8 @@ public class Post {
                 httpPost.setEntity(builder.build());
 
                 HttpEntity entity = httpPost.getEntity();
-//                entity.writeTo(System.out);
 
-                HttpResponse response = client.execute(httpPost);
-                //  response.getEntity().writeTo(System.out);
-                
+                HttpResponse response = client.execute(httpPost);                
                 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
